@@ -1,0 +1,13 @@
+.zoom {
+   
+    
+    transition: transform .3s; /* Animation */
+   
+    margin: 0 auto;
+  }
+  
+  .zoom:hover {
+    transform: scale(1.1);}
+    body{
+      background-color: black;
+    }
