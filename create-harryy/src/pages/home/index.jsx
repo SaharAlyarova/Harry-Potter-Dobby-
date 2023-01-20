@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 // import { Input } from "@chakra-ui/input"
 // import {  Stack } from "@chakra-ui/Stack"
 import SearchInput from "../../components/input/index";
@@ -28,7 +29,7 @@ const HomePage = () => {
       setData([...searchDatas.data.Search.filter((el) =>
         el.Title.includes(e.target.value)
       )]);
-      
+
     console.log(([...searchDatas.data.Search.filter((el) =>
       el.Title.includes(e.target.value)
     )]))
@@ -49,10 +50,12 @@ const HomePage = () => {
 }} />
 <button onClick={()=>{handleSort()}}>Sort</button>
       <h4 style={{ color: "blue" }}>Movies</h4>
-    <div style={{ display: "flex", flexWrap: "wrap", maxWidth:"1300px",margin:"0 auto" }}>
+    <div >
+    
     {data.Search?.map((element) => {
         return (
-          <div className="zoom" key={element.imdbID} style={{backgroundColor:"#5C5C5C", color:"white",margin:"0 auto", margin:"10px",rowGap:"4%"}}>
+          <NavLink key={element.imdbID} to={`/:${element.imdbID}`}  style={{ display: "flex", flexWrap: "wrap", maxWidth:"1300px",margin:"0 auto" }}>
+            <div className="zoom"  style={{backgroundColor:"#5C5C5C", color:"white",margin:"0 auto", margin:"10px",rowGap:"4%"}}>
             <div>
               <img  src={element.Poster} alt="" style={{width:"100%", height:"400px"}} />
             </div>
@@ -61,8 +64,11 @@ const HomePage = () => {
               <p>{element.Year}</p>
             </div>
           </div>
+          
+          </NavLink>
         );
       })}
+    
     </div>
     </div>
   );

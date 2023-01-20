@@ -1,9 +1,10 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import DetailPage from '../pages/detail'
 import HomePage from '../pages/home'
-import DetailPage from '../pages/home/detail'
+// import DetailPage from '../pages/home/detail'
 
-const Router = () => {
+const RouterCom = () => {
   return (
   <Routes>
     <Route path='/' element={<HomePage/>}/>
@@ -12,4 +13,4 @@ const Router = () => {
   )
 }
 
-export default Router
+export default RouterCom
