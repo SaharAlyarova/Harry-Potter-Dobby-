@@ -19,6 +19,7 @@ const DetailPage = () => {
       <p style={{color:"white"}}>
         {detailData?.Year}
       </p>
+     { console.log(detailData)}
       <p style={{color:"white"}}>
         {detailData?.Type}
       </p>

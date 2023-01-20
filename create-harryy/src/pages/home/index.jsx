@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { Input } from "@chakra-ui/input"
 // import {  Stack } from "@chakra-ui/Stack"
-import SearchInput from "../../components/input/index";
-import { Input } from 'antd';
+// import SearchInput from "../../components/input/index";
+// import { Input } from 'antd';
 // import {
 //   Input,
  
@@ -16,7 +16,7 @@ const HomePage = () => {
       "https://www.omdbapi.com/?apiKey=398de975&s=harry"
     );
 
-    setData(await response.data);
+    setData(await response.data.Search);
   };
   useEffect(() => {
     getData();
@@ -25,20 +25,24 @@ const HomePage = () => {
   const handleChange = async (e) => {
     
       const searchDatas = await axios.get("https://www.omdbapi.com/?apiKey=398de975&s=harry") 
-    
+    console.log(data)
       setData([...searchDatas.data.Search.filter((el) =>
-        el.Title.includes(e.target.value)
+        el.Title?.toLowerCase().includes(e.target.value.toLowerCase())
       )]);
-
-    console.log(([...searchDatas.data.Search.filter((el) =>
-      el.Title.includes(e.target.value)
-    )]))
+// console.log([...searchDatas.data.Search.filter((el) =>
+//   el.Title?.toLoweCase().includes(e.target.value.toLoweCase())
+// )])
+    // console.log(([...searchDatas.data.Search.filter((el) =>
+    //   el.Title.includes(e.target.value)
+    // )]))
   };
 //sort
   const handleSort=()=>{
-    const sortedData = data?.Search.sort((a,b) => a.Title > b.Title ? 1 : -1)
-    setData([...data], sortedData)
+    const sortedData = data?.sort((a,b) => a.Title > b.Title ? 1 : -1)
+    console.log(sortedData)
+    setData( [...sortedData])
   }
+
 
   //link(https://www.omdbapi.com/?apiKey=398de975&s=harry)
   return (
@@ -52,9 +56,9 @@ const HomePage = () => {
       <h4 style={{ color: "blue" }}>Movies</h4>
     <div >
     
-    {data.Search?.map((element) => {
+    {data?.map((element) => {
         return (
-          <Link key={element.imdbID} to={`/:${element.imdbID}`}  style={{ display: "flex", flexWrap: "wrap", maxWidth:"1300px",margin:"0 auto" }}>
+          <Link key={element.imdbID} to={`/${element.imdbID}`}  style={{ display: "flex", flexWrap: "wrap", maxWidth:"1300px",margin:"0 auto" }}>
             <div className="zoom"  style={{backgroundColor:"#5C5C5C", color:"white",margin:"0 auto", margin:"10px",rowGap:"4%"}}>
             <div>
               <img  src={element.Poster} alt="" style={{width:"100%", height:"400px"}} />
