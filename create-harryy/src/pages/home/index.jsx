@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 // import { Input } from "@chakra-ui/input"
 // import {  Stack } from "@chakra-ui/Stack"
 import SearchInput from "../../components/input/index";
@@ -54,7 +54,7 @@ const HomePage = () => {
     
     {data.Search?.map((element) => {
         return (
-          <NavLink key={element.imdbID} to={`/:${element.imdbID}`}  style={{ display: "flex", flexWrap: "wrap", maxWidth:"1300px",margin:"0 auto" }}>
+          <Link key={element.imdbID} to={`/:${element.imdbID}`}  style={{ display: "flex", flexWrap: "wrap", maxWidth:"1300px",margin:"0 auto" }}>
             <div className="zoom"  style={{backgroundColor:"#5C5C5C", color:"white",margin:"0 auto", margin:"10px",rowGap:"4%"}}>
             <div>
               <img  src={element.Poster} alt="" style={{width:"100%", height:"400px"}} />
@@ -65,7 +65,7 @@ const HomePage = () => {
             </div>
           </div>
           
-          </NavLink>
+          </Link>
         );
       })}
     
