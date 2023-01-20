@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-// import { Input } from "@chakra-ui/input"
-// import {  Stack } from "@chakra-ui/Stack"
-// import SearchInput from "../../components/input/index";
-// import { Input } from 'antd';
-// import {
-//   Input,
- 
-// } from "@chakra-ui/input"
+
 const HomePage = () => {
   const [data, setData] = useState([]);
   const getData = async () => {
@@ -29,12 +22,7 @@ const HomePage = () => {
       setData([...searchDatas.data.Search.filter((el) =>
         el.Title?.toLowerCase().includes(e.target.value.toLowerCase())
       )]);
-// console.log([...searchDatas.data.Search.filter((el) =>
-//   el.Title?.toLoweCase().includes(e.target.value.toLoweCase())
-// )])
-    // console.log(([...searchDatas.data.Search.filter((el) =>
-    //   el.Title.includes(e.target.value)
-    // )]))
+
   };
 //sort
   const handleSort=()=>{
@@ -43,6 +31,11 @@ const HomePage = () => {
     setData( [...sortedData])
   }
 
+  const RepeadSort=()=>{
+    const sortedData = data?.sort((a,b) => a.Title < b.Title ? 1 : -1)
+    console.log(sortedData)
+    setData( [...sortedData])
+  }
 
   //link(https://www.omdbapi.com/?apiKey=398de975&s=harry)
   return (
@@ -53,6 +46,7 @@ const HomePage = () => {
   handleChange(e)
 }} />
 <button onClick={()=>{handleSort()}}>Sort</button>
+<button onClick={()=>{RepeadSort()}}>Repead Sort</button>
       <h4 style={{ color: "blue" }}>Movies</h4>
     <div >
     
