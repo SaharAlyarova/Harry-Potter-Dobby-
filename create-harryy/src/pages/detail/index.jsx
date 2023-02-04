@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 const DetailPage = () => {
-  const [detailData, setDetailData] = useState({})
+  const [detailData, setDetailData] = useState([])
   const {imdbID}=useParams()
   const getProductById=async(imdbID)=>{
     const data= await axios.get( `https://www.omdbapi.com/?apiKey=398de975&i=${imdbID}`)
@@ -27,5 +27,4 @@ const DetailPage = () => {
     </div>
   )
 }
-
 export default DetailPage
